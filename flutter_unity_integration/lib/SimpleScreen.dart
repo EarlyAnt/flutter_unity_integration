@@ -14,6 +14,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
 
   UnityWidgetController _unityWidgetController;
   double _sliderValue = 0.0;
+  String _title = "Integration";
 
   @override
   void initState() {
@@ -31,7 +32,7 @@ class _SimpleScreenState extends State<SimpleScreen> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: Text('Simple Screen'),
+        title: Text(_title),
       ),
       body: Card(
           margin: const EdgeInsets.all(8),
@@ -46,33 +47,33 @@ class _SimpleScreenState extends State<SimpleScreen> {
                 onUnityMessage: onUnityMessage,
                 onUnitySceneLoaded: onUnitySceneLoaded,
               ),
-              Positioned(
-                bottom: 20,
-                left: 20,
-                right: 20,
-                child: Card(
-                  elevation: 10,
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
-                        child: Text("Rotation speed:"),
-                      ),
-                      Slider(
-                        onChanged: (value) {
-                          setState(() {
-                            _sliderValue = value;
-                          });
-                          setRotationSpeed(value.toString());
-                        },
-                        value: _sliderValue,
-                        min: 0,
-                        max: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Positioned(
+              //   bottom: 20,
+              //   left: 20,
+              //   right: 20,
+              //   child: Card(
+              //     elevation: 10,
+              //     child: Column(
+              //       children: <Widget>[
+              //         Padding(
+              //           padding: const EdgeInsets.only(top: 20),
+              //           child: Text("Rotation speed:"),
+              //         ),
+              //         Slider(
+              //           onChanged: (value) {
+              //             setState(() {
+              //               _sliderValue = value;
+              //             });
+              //             setRotationSpeed(value.toString());
+              //           },
+              //           value: _sliderValue,
+              //           min: 0,
+              //           max: 20,
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           )),
     );
@@ -88,6 +89,9 @@ class _SimpleScreenState extends State<SimpleScreen> {
 
   void onUnityMessage(message) {
     print('Received message from unity: ${message.toString()}');
+    setState(() {
+      _title = message.toString();
+    });
   }
 
   void onUnitySceneLoaded(SceneLoaded scene) {
