@@ -1,0 +1,18 @@
+1.修改unityLibrary中的build.gradle文件，替换下列代码块
+
+dependencies {
+    implementation(name: 'unity-classes', ext:'jar')
+}
+
+
+2.用flutter_unity_integration项目中自带的DemoApp输出的unityLibrary中的src/main/res目录下所有的内容，替换AppGame导出的unityLibrary/src/main/rec目录下的内容。
+
+
+3.完成以上2处修改，即可编译成功。
+
+
+
+
+
+
+
